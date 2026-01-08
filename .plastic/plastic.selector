@@ -1,0 +1,4 @@
+repository "PadelGame/PadelGame@4674033888712@cloud"
+  path "/"
+    br "/main"
+    co "/main"

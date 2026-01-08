@@ -1,0 +1,97 @@
+═══════════════════════════════════════════════════════════════
+  CONFIGURACIÓN RÁPIDA - JUEGO PADEL (Otto's Tennis Game Style)
+═══════════════════════════════════════════════════════════════
+
+PASO 1: CONFIGURAR TAGS Y LAYERS
+─────────────────────────────────
+1. Ve a Edit > Project Settings > Tags and Layers
+2. Crea los siguientes Tags:
+   - Player
+   - Ball
+   - Ground
+   - Wall
+   - LeftGoal
+   - RightGoal
+
+PASO 2: CONFIGURAR JUGADORES
+─────────────────────────────
+Para cada jugador (personaje_0 y personaje2):
+
+1. Agregar Rigidbody2D:
+   - Gravity Scale: 2
+   - Constraints: Freeze Position X, Freeze Rotation
+
+2. Agregar PlayerController:
+   - Player Number: 1 (izquierda) o 2 (derecha)
+   - Jump Force: 10
+   - Max Height: 4
+
+3. Agregar Collider2D (BoxCollider2D o CircleCollider2D)
+
+4. Crear hijo "Racket" para la raqueta:
+   - Agregar RacketController
+   - Agregar Collider2D (marcar como Trigger)
+   - Sweet Spot Radius: 0.3
+
+PASO 3: CONFIGURAR PELOTA
+──────────────────────────
+1. Agregar Rigidbody2D:
+   - Gravity Scale: 0
+   - Drag: 0
+
+2. Agregar BallController:
+   - Initial Speed: 5
+   - Max Speed: 15
+
+3. Agregar CircleCollider2D
+
+4. Asignar tag: "Ball"
+
+PASO 4: CONFIGURAR SUELO
+─────────────────────────
+1. En el objeto "Square":
+   - Agregar componente Ground
+   - Asignar tag: "Ground"
+
+PASO 5: CREAR ZONAS DE GOL
+───────────────────────────
+Crear dos objetos vacíos:
+
+LeftGoal (lado izquierdo):
+- BoxCollider2D (Trigger)
+- GoalZone (Player Number: 1)
+- Tag: "LeftGoal"
+
+RightGoal (lado derecho):
+- BoxCollider2D (Trigger)
+- GoalZone (Player Number: 2)
+- Tag: "RightGoal"
+
+PASO 6: CONFIGURAR GAMEMANAGER
+───────────────────────────────
+1. Crear GameObject vacío "GameManager"
+2. Agregar GameManager:
+   - Points To Win: 5
+   - Asignar referencias a Ball, Player1, Player2
+
+PASO 7: CONFIGURAR UI (OPCIONAL)
+─────────────────────────────────
+1. Crear Canvas
+2. Crear TextMeshPro para scores
+3. Crear Panel para GameOver
+4. Agregar UIManager y asignar referencias
+
+CONTROLES
+─────────
+- Jugador 1: W o Espacio
+- Jugador 2: Flecha Arriba (↑)
+
+NOTAS IMPORTANTES
+─────────────────
+- Los jugadores solo saltan (no se mueven lateralmente)
+- La pelota siempre rebota en el suelo
+- Los puntos se otorgan cuando la pelota sale por los lados
+- El "sweet spot" en la raqueta genera golpes más potentes
+
+═══════════════════════════════════════════════════════════════
+
