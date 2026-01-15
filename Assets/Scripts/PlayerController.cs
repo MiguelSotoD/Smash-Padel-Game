@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     private const string PARAM_IS_FALLING = "IsFalling";
 
     public PlayerSoundController playerSoundController;
+    public ParticleSystem particulaSalto;
     
     private void Awake()
     {
@@ -92,6 +93,11 @@ public class PlayerController : MonoBehaviour
         HandleJump();
     }
     
+    void crearParticulaSalto()
+    {
+        particulaSalto.Play();
+    }
+
     private void HandleInput()
     {
         // Jugador 1: W o Espacio
@@ -120,6 +126,7 @@ public class PlayerController : MonoBehaviour
                     rb.linearVelocity = new Vector2(0, Mathf.Min(jumpForce * 0.8f, (topY - transform.position.y) * 2f));
                     lastJumpTime = Time.time;
                     playerSoundController.PlaySaltar();
+                    crearParticulaSalto();
                 }
             }
         }
